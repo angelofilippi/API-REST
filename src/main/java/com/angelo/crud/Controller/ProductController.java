@@ -38,4 +38,28 @@ public class ProductController {
         BeanUtils.copyProperties(dto, product);
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(product));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable(value = "id") Integer id) {
+        Optional product = repository.findById(id);
+        if(product.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        }
+
+        repository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Product deleted");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable(value = "id") Integer id, @RequestBody ProductDto dto) {
+        Optional product = repository.findById(id);
+        if(product.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        }
+
+        var productUpdate = new Product();
+        BeanUtils.copyProperties(dto, productUpdate);
+        productUpdate.setID(id);
+        return ResponseEntity.status(HttpStatus.OK).body(repository.save(productUpdate));
+    }
 }
