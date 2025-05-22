@@ -35,7 +35,6 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.FOUND).body(product.get());
     }
 
-
     @PostMapping
     public ResponseEntity save(@RequestBody ProductDto dto) {
         var product = new Product();
