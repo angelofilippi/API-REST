@@ -28,6 +28,10 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable(value = "id") Integer id) {
         Optional product = repository.findById(id);
+        if(product.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        }
+
         return ResponseEntity.status(HttpStatus.FOUND).body(product.get());
     }
 
