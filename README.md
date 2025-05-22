@@ -1,6 +1,6 @@
 ## 🔑API REST🔑
 
-## 📖Este repositóiro é para afins de pratica e estudos📖
+## 📖Este repositório é para afins de pratica e estudos📖
 
 ## Requisições adicionadas até agora:
 
